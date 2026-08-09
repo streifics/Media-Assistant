@@ -116,6 +116,7 @@ curl -d '' 'http://10.0.0.15:8060/input?u=https%3A%2F%2Farchive.org%2Fdownload%2
             - `artistName` - takes the name of the song's artist, like `Kevin MacLeod`
             - `albumName` - takes the name of your song's album, like `Epic Elevator Tunes!`
             - `albumArt` - takes a `URL` to an image file (Images that are square work best)
+                - If the `URL` is empty it will default to the disc art or the radio art if `isLive` is `true`
             - `timeOffset` - offsets display time (This is an advanced parameter, more info below)
             - `duration` - sets the display duration (This is an advanced parameter, more info below)
             - `isLive` - if set to `true` a red live bar will be shown instead of song progress
@@ -133,6 +134,7 @@ curl -d '' 'http://10.0.0.15:8060/input?u=https%3A%2F%2Farchive.org%2Fdownload%2
         - The Metadata type works only if Media Assistant is in the Audio UI.
         - This allows you to update the currently displayed metadata without stopping or restarting the current audio playback.
         - For example, if you are playing back an Internet Radio Stream and want to update the `songName` each time a new song starts without restarting/sending the audio stream.
+        - The `albumArt` parameter works differently with the Metadata type, it will not update the art if you send an empty `string`. If you would like the default art you must send `albumArt=default`
         - The following parameters cannot be sent with a metadata request `u`,`contentId`,`songFormat`,`videoFormat`,`videoName`,`enqueue`, `holdQueue`
     - Audio: `timeOffset`
         - timeOffset takes an `int` as a `string` and allows you to push forward the displayed time by seconds

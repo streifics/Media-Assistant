@@ -125,13 +125,13 @@ sub updateMetadata(deeplink)
     m.songname.text = deeplink.songName
     m.artistname.text = deeplink.artistName
     if (deeplink.albumArt <> "")
-        if (m.albumart.uri <> deeplink.albumArt)
+        if (deeplink.albumArt = "default")
+            m.albumart.uri = "pkg:/images/record_full.png"
+            SetBg("")
+        else if (m.albumart.uri <> deeplink.albumArt)
             m.albumart.uri = deeplink.albumArt
             SetBg(deeplink.albumArt)
         end if
-    else
-        m.albumart.uri = "pkg:/images/record_full.png"
-        SetBg("")
     end if
     if (deeplink.timeOffset <> Invalid)
         m.parsedDeeplink.timeOffset = deeplink.timeOffset
