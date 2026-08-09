@@ -95,14 +95,18 @@ curl -d '' 'http://10.0.0.15:8060/input?u=https%3A%2F%2Farchive.org%2Fdownload%2
 ### Supported URL Parameters
 
 - Required Parameters
+    - Always Required
+        - `u` or `contentId` - takes a `URL` to a media source or stream (The URL can be left blank if using media type `t=m` or actions `a=`)
+    - One of these per request (If left out it will default to media type `t=v`)
+        - `t` - takes the media type
+            - `a` for audio (This sets Media Assistant to the Audio UI)
+            - `v` for video (This sets Media Assistant to the Video UI)
+            - `m` for metadata update (This is an advanced parameter, more info below)
+        - `a` - takes an action type
+            - `s` - for Skip (This skips the current playing item and will start the queued one)
+                - This will also end the `holdQueue` if set and play the queued item
 
-    - `u` or `contentId` - takes a `URL` to a media source or stream (This can be left out if using media type `m`)
-    - `t` - takes the media type (If the `t` parameter is left out, it will default to video)
-        - `a` for audio (This sets Media Assistant to the Audio UI)
-        - `v` for video (This sets Media Assistant to the Video UI)
-        - `m` for metadata update (This is an advanced parameter, more info below)
-
-- Optional Parameters
+- Optional Parameters (These can be used along side the `t` parameter)
     - Format Parameters are optional but need to be used to support certain media formats
         - `videoFormat` - takes a video format type like `mp4`,`hls`,`mkv`
         - `songFormat` - takes a audio format type like `mp3`,`aac`,`flac`
@@ -121,13 +125,15 @@ curl -d '' 'http://10.0.0.15:8060/input?u=https%3A%2F%2Farchive.org%2Fdownload%2
     - Enqueueing
         - `enqueue` - if set to `true` the request will be queued to play after the current item
             - You can only have **one item** queued. If you send this parameter while an item is in queue, it will be overridden
+        - `holdQueue` - if set to `true` along side enqueue being `true` it will wait before playing the queued media
+            - A skip action `a=s` request has to be sent to end the wait and play the media.
 
 - Advanced Parameters Info
     - Media Type: `m`
         - The Metadata type works only if Media Assistant is in the Audio UI.
         - This allows you to update the currently displayed metadata without stopping or restarting the current audio playback.
         - For example, if you are playing back an Internet Radio Stream and want to update the `songName` each time a new song starts without restarting/sending the audio stream.
-        - The following parameters cannot be sent with a metadata request `u`,`contentId`,`songFormat`,`videoFormat`,`videoName`,`enqueue`
+        - The following parameters cannot be sent with a metadata request `u`,`contentId`,`songFormat`,`videoFormat`,`videoName`,`enqueue`, `holdQueue`
     - Audio: `timeOffset`
         - timeOffset takes an `int` as a `string` and allows you to push forward the displayed time by seconds
         - This does not affect actual playback, only what you see in the Audio UI
@@ -139,6 +145,7 @@ curl -d '' 'http://10.0.0.15:8060/input?u=https%3A%2F%2Farchive.org%2Fdownload%2
     - Audio: `isLive`
         - isLive will be set `true` automatically if the audio is detected to be a stream (This doesn't always work)
         - This will be disabled if the parameters `timeOffset` or `duration` are set
+        - If the current time overflows the duration by 2 seconds this will be enabled
 
 > [!WARNING]
 > All URLs and their URL Parameters must be encoded in order for the Post Request to succeed. Most Http Request libraries do this automatically, but some don't. For convience, the cURL examples above have already had the URLs encoded. [Learn More](https://www.w3schools.com/tags/ref_urlencode.ASP)

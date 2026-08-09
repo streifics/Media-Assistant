@@ -107,7 +107,7 @@ sub handleInputEvent(msg)
                         handleDeepLink(deeplink)
                     end if
                 end if
-            elseif (deeplink.a = "e")
+            elseif (deeplink.a = "s")
                 if (m.queuedDeeplink <> Invalid)
                         m.video.control = "stop"
                         handleDeepLink(m.queuedDeeplink)
