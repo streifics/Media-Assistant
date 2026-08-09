@@ -33,6 +33,7 @@ Function getDeepLinks(args) as Object
         deeplink = {
             u: checkURL(args)
             t: check("v", args.t)
+            a: check("", args.a)
             videoName: check(tr("Unknown Video"), args.videoName)
             albumName: check("", args.albumName)
             songName: check(tr("Unknown Song"), args.songName)

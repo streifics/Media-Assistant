@@ -25,6 +25,7 @@ function ListenInput()
                 deeplink = {
                     u: checkURL(inputData)
                     t: check("v", inputData.t)
+                    a: check("", inputData.a)
                     videoName: check(tr("Unknown Video"), inputData.videoName)
                     albumName: check("", inputData.albumName)
                     songName: check(tr("Unknown Song"), inputData.songName)

@@ -67,6 +67,9 @@ Function handleDeepLink(deeplink as object)
         if deeplink.t = "m"
             m.debugtext.text = tr("Media Type Error: Metadata can only be used if media is already playing")
             m.debuglabel.visible = true
+        else if deeplink.a <> ""
+            m.debugtext.text = tr("Action Error: Actions can only be used if media is already playing")
+            m.debuglabel.visible = true
         elseif deeplink.enqueue = true
             m.debugtext.text = tr("Media Queue Error: There was an issue processing the queued media")
             m.debuglabel.visible = true
@@ -104,7 +107,7 @@ sub handleInputEvent(msg)
                         handleDeepLink(deeplink)
                     end if
                 end if
-            elseif (deeplink.t = "e")
+            elseif (deeplink.a = "e")
                 if (m.queuedDeeplink <> Invalid)
                         m.video.control = "stop"
                         handleDeepLink(m.queuedDeeplink)

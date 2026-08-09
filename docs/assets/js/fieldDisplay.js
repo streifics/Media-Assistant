@@ -1,10 +1,34 @@
-const field = document.querySelector("#media-type")
+const mField = document.querySelector("#media-type")
+const aField = document.querySelector("#action-type")
 
-field.addEventListener("change", (event) => {
+mField.addEventListener("change", (event) => {
+    RefreshFields()
+})
+
+aField.addEventListener("change", (event) => {
     RefreshFields()
 })
 
 function RefreshFields() {
+
+    if (document.querySelector("#media-type").value != "") {
+        const div = document.getElementsByClassName("action")[0];
+        div.style.display = "none"
+    }
+    else {
+        const div = document.getElementsByClassName("action")[0];
+        div.style.display = ""
+    }
+
+    if (document.querySelector("#action-type").value != "") {
+        const div = document.getElementsByClassName("media")[0];
+        div.style.display = "none"
+    }
+    else {
+        const div = document.getElementsByClassName("media")[0];
+        div.style.display = ""
+    }
+
     ResetFields()
     if (document.querySelector("#media-type").value == "v") {
         for (let element = 0; element < document.getElementsByClassName("video").length; element++) {
@@ -27,6 +51,8 @@ function RefreshFields() {
 }
 
 function ClearFields() {
+    document.getElementById("media-type").value = ""
+    document.getElementById("action-type").value = ""
     for (let element = 0; element < document.getElementsByClassName("clear").length; element++) {
             const input = document.getElementsByClassName("clear")[element];
             input.value = ""
