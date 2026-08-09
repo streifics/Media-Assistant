@@ -19,6 +19,13 @@ function RefreshCURL() {
         editedData.delete("enqueue")
     }
 
+    if (editedData.get("holdQueue") == "on") {
+        editedData.set("holdQueue", "true")
+    }
+    else {
+        editedData.delete("holdQueue")
+    }
+
     if (editedData.get("isLive") == "on") {
         editedData.set("isLive", "true")
     }
@@ -72,6 +79,13 @@ async function sendData() {
     }
     else {
         editedData.delete("enqueue")
+    }
+
+    if (editedData.get("holdQueue") == "on") {
+        editedData.set("holdQueue", "true")
+    }
+    else {
+        editedData.delete("holdQueue")
     }
 
     if (editedData.get("isLive") == "on") {

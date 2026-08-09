@@ -41,7 +41,7 @@
                 <label for="id">*Roku Channel ID </label>
                 <input type="text" name="id" id="id" placeholder="dev" value="782875" required />
             </div>
-            <div>
+            <div class="video audio metadata" style="display: none;">
                 <label for="u">**Media Url: </label>
                 <input class="clear" type="text" name="u" id="u" placeholder="https://video.mp4" />
             </div>
@@ -53,6 +53,7 @@
                     <option value="v">Video</option>
                     <option value="a">Audio</option>
                     <option value="m">Metadata (Audio Only)</option>
+                    <option value="e">Enqueued (Plays Queued Media)</option>
                 </select>
             </div>
             <div class="video" style="display: none;">
@@ -96,8 +97,12 @@
                     <label for="enqueue">Enqueue: </label>
                     <input class="clearBox" type="checkbox" name="enqueue" id="enqueue" style="margin-right: 2%;" />
                 </span>
+                <span class="audio video" style="display: none;">
+                    <label for="holdQueue">Hold Queue: </label>
+                    <input class="clearBox" type="checkbox" name="holdQueue" id="hold-queue" style="margin-right: 2%;" />
+                </span>
                 <span class="audio metadata" style="display: none;">
-                    <label for="isLive" style="margin-left: 2%;">Is Live: </label>
+                    <label for="isLive">Is Live: </label>
                     <input class="clearBox" type="checkbox" name="isLive" id="is-live" />
                 </span>
             </div><br>

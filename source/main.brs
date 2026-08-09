@@ -43,6 +43,7 @@ Function getDeepLinks(args) as Object
             timeOffset: strToInt(args.timeOffset)
             duration: strToInt(args.duration)
             enqueue: strToBool(args.enqueue)
+            holdQueue: strToBool(args.holdQueue)
             isLive: strToBool(args.isLive)
         }
     end if

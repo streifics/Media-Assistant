@@ -104,6 +104,11 @@ sub handleInputEvent(msg)
                         handleDeepLink(deeplink)
                     end if
                 end if
+            elseif (deeplink.t = "e")
+                if (m.queuedDeeplink <> Invalid)
+                        m.video.control = "stop"
+                        handleDeepLink(m.queuedDeeplink)
+                end if
             elseif (deeplink.u <> Invalid and deeplink.u <> "")
                 handleDeepLink(deeplink)
             end if
@@ -117,15 +122,23 @@ sub updateMetadata(deeplink)
     m.songname.text = deeplink.songName
     m.artistname.text = deeplink.artistName
     if (deeplink.albumArt <> "")
-        m.albumart.uri = deeplink.albumArt
-        SetBg(deeplink.albumArt)
+        if (m.albumart.uri <> deeplink.albumArt)
+            m.albumart.uri = deeplink.albumArt
+            SetBg(deeplink.albumArt)
+        end if
     else
         m.albumart.uri = "pkg:/images/record_full.png"
         SetBg("")
     end if
-    m.parsedDeeplink.timeOffset = deeplink.timeOffset
-    m.parsedDeeplink.duration = deeplink.duration
-    m.parsedDeeplink.isLive = deeplink.isLive
+    if (deeplink.timeOffset <> Invalid)
+        m.parsedDeeplink.timeOffset = deeplink.timeOffset
+    end if
+    if (deeplink.duration <> Invalid)
+        m.parsedDeeplink.duration = deeplink.duration
+    end if
+    if (deeplink.isLive <> Invalid)
+        m.parsedDeeplink.isLive = deeplink.isLive
+    end if
 end sub
 
 sub playaudio()
@@ -227,6 +240,11 @@ sub trackvideoprogress()
                     m.noSeeking = false
                 end if
 
+                if (curTime > duration + 2)
+                    ' Setting to live if current media time has passed the known duration
+                    throw "curTime has exceed the duration"
+                end if
+
                 m.videototal.text = ConvertSec(duration)
                 barWidth = MapRange(curTime, 0, duration, 0, 475)
                 if (barWidth > 475)
@@ -305,7 +323,16 @@ sub controlvideoplay()
         print(m.queuedDeeplink)
         if (m.queuedDeeplink <> Invalid)
             m.video.control = "stop"
-            handleDeepLink(m.queuedDeeplink)
+            if (m.queuedDeeplink.holdQueue <> Invalid)
+                ' Using deeplink before 2nd parse possibly improper?
+                if (m.queuedDeeplink.holdQueue = true)
+                    print("HOLDING QUEUE UNTILL SIGNAL")
+                else
+                    handleDeepLink(m.queuedDeeplink)
+                end if
+            else
+                handleDeepLink(m.queuedDeeplink)
+            end if
         end if
         ' m.video.visible = false
     end if

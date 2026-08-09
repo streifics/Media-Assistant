@@ -35,6 +35,7 @@ function ListenInput()
                     timeOffset: strToInt(inputData.timeOffset)
                     duration: strToInt(inputData.duration)
                     enqueue: strToBool(inputData.enqueue)
+                    holdQueue: strToBool(inputData.holdQueue)
                     isLive: strToBool(inputData.isLive)
                 }
             end if
