@@ -103,7 +103,7 @@ curl -d '' 'http://10.0.0.15:8060/input?u=https%3A%2F%2Farchive.org%2Fdownload%2
             - `v` for video (This sets Media Assistant to the Video UI)
             - `m` for metadata update (This is an advanced parameter, more info below)
         - `a` - takes an action type
-            - `s` - for Skip (This skips the current playing item and will start the queued one)
+            - `s` - for skip (This skips the current playing item and will start the queued one)
                 - This will also end the `holdQueue` if set and play the queued item
 
 - Optional Parameters (These can be used along side the `t` parameter)
@@ -116,8 +116,8 @@ curl -d '' 'http://10.0.0.15:8060/input?u=https%3A%2F%2Farchive.org%2Fdownload%2
             - `artistName` - takes the name of the song's artist, like `Kevin MacLeod`
             - `albumName` - takes the name of your song's album, like `Epic Elevator Tunes!`
             - `albumArt` - takes a `URL` to an image file (Images that are square work best)
-            - `timeOffset` - Offsets display time (This is an advanced parameter, more info below)
-            - `duration` - Sets the display duration (This is an advanced parameter, more info below)
+            - `timeOffset` - offsets display time (This is an advanced parameter, more info below)
+            - `duration` - sets the display duration (This is an advanced parameter, more info below)
             - `isLive` - if set to `true` a red live bar will be shown instead of song progress
                 - This can be overridden by certain things, see advanced parameters below
         - Video
