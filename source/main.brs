@@ -41,6 +41,7 @@ Function getDeepLinks(args) as Object
             albumArt: check("", args.albumArt)
             songFormat: check("", args.songFormat)
             videoFormat: check("", args.videoFormat)
+            videoSubs: check("", args.videoSubs)
             timeOffset: strToInt(args.timeOffset)
             duration: strToInt(args.duration)
             enqueue: strToBool(args.enqueue)

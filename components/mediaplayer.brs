@@ -204,6 +204,12 @@ sub playvideo()
     videocontent.url = m.parsedDeeplink.u
     videocontent.streamformat = m.parsedDeeplink.videoFormat
 
+    videocontent.subtitletracks = [{
+        Language: "en-US",
+        Description: "Subtitles",
+        TrackName: m.parsedDeeplink.videoSubs
+    }]
+
     m.video.content = videocontent
 
     m.video.enableTrickPlay = true
