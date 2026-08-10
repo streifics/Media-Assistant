@@ -123,6 +123,9 @@ curl -d '' 'http://10.0.0.15:8060/input?u=https%3A%2F%2Farchive.org%2Fdownload%2
                 - This can be overridden by certain things, see advanced parameters below
         - Video
             - `videoName` - takes the name of your video, like `Big Buck Bunny`
+            - `videoSubs` - takes a `URL` to a subtitles file, supports `.srt`, `.ttml`, and `.dfxp`
+                - Subtitles loaded this way will show up as `English (US)` in the Roku settings regardless of language.
+                - Subtitles can also be embedded in the media source or stream
     - Enqueueing
         - `enqueue` - if set to `true` the request will be queued to play after the current item
             - You can only have **one item** queued. If you send this parameter while an item is in queue, it will be overridden
