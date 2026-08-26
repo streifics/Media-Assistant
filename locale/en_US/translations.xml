@@ -63,54 +63,58 @@
     <target>Media Type Error: Metadata can only be used if media is already playing</target>
   </trans-unit>
   <trans-unit id="15">
+    <source>Action Error: Actions can only be used if media is already playing</source>
+    <target>Action Error: Actions can only be used if media is already playing</target>
+  </trans-unit>
+  <trans-unit id="16">
     <source>Media Queue Error: There was an issue processing the queued media</source>
     <target>Media Queue Error: There was an issue processing the queued media</target>
   </trans-unit>
-  <trans-unit id="16">
+  <trans-unit id="17">
     <source>Media URL Error: There was no media URL provided</source>
     <target>Media URL Error: There was no media URL provided</target>
   </trans-unit>
-  <trans-unit id="17">
+  <trans-unit id="18">
     <source>Media Type Error: The Media Type provided is unknown</source>
     <target>Media Type Error: The Media Type provided is unknown</target>
   </trans-unit>
-  <trans-unit id="18">
+  <trans-unit id="19">
     <source>Deeplink Error: The request didn't contain valid data</source>
     <target>Deeplink Error: The request didn't contain valid data</target>
   </trans-unit>
-  <trans-unit id="19">
+  <trans-unit id="20">
     <source>Scan to learn more</source>
     <target>Scan to learn more</target>
   </trans-unit>
-  <trans-unit id="20">
+  <trans-unit id="21">
     <source>Or go to medievalapple.net/ma-setup</source>
     <target>Or go to medievalapple.net/ma-setup</target>
   </trans-unit>
-  <trans-unit id="21">
+  <trans-unit id="22">
     <source>Welcome to Media Assistant!</source>
     <target>Welcome to Media Assistant!</target>
   </trans-unit>
-  <trans-unit id="22">
+  <trans-unit id="23">
     <source>To learn how to setup supported apps or how to use the developer API, please scan the code.</source>
     <target>To learn how to setup supported apps or how to use the developer API, please scan the code.</target>
   </trans-unit>
-  <trans-unit id="23">
+  <trans-unit id="24">
     <source>| About</source>
     <target>| About</target>
   </trans-unit>
-  <trans-unit id="24">
+  <trans-unit id="25">
     <source>About</source>
     <target>About</target>
   </trans-unit>
-  <trans-unit id="25">
+  <trans-unit id="26">
     <source>Links:</source>
     <target>Links:</target>
   </trans-unit>
-  <trans-unit id="26">
+  <trans-unit id="27">
     <source>Website:</source>
     <target>Website:</target>
   </trans-unit>
-  <trans-unit id="27">
+  <trans-unit id="28">
     <source>Copyright:</source>
     <target>Copyright:</target>
   </trans-unit>

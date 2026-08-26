@@ -95,14 +95,18 @@ curl -d '' 'http://10.0.0.15:8060/input?u=https%3A%2F%2Farchive.org%2Fdownload%2
 ### Supported URL Parameters
 
 - Required Parameters
+    - Always Required
+        - `u` or `contentId` - takes a `URL` to a media source or stream (The URL can be left blank if using media type `t=m` or actions `a=`)
+    - One of these per request (If left out it will default to media type `t=v`)
+        - `t` - takes the media type
+            - `a` for audio (This sets Media Assistant to the Audio UI)
+            - `v` for video (This sets Media Assistant to the Video UI)
+            - `m` for metadata update (This is an advanced parameter, more info below)
+        - `a` - takes an action type
+            - `s` - for skip (This skips the current playing item and will start the queued one)
+                - This will also end the `holdQueue` if set and play the queued item
 
-    - `u` or `contentId` - takes a `URL` to a media source or stream (This can be left out if using media type `m`)
-    - `t` - takes the media type (If the `t` parameter is left out, it will default to video)
-        - `a` for audio (This sets Media Assistant to the Audio UI)
-        - `v` for video (This sets Media Assistant to the Video UI)
-        - `m` for metadata update (This is an advanced parameter, more info below)
-
-- Optional Parameters
+- Optional Parameters (These can be used along side the `t` parameter)
     - Format Parameters are optional but need to be used to support certain media formats
         - `videoFormat` - takes a video format type like `mp4`,`hls`,`mkv`
         - `songFormat` - takes a audio format type like `mp3`,`aac`,`flac`
@@ -112,22 +116,29 @@ curl -d '' 'http://10.0.0.15:8060/input?u=https%3A%2F%2Farchive.org%2Fdownload%2
             - `artistName` - takes the name of the song's artist, like `Kevin MacLeod`
             - `albumName` - takes the name of your song's album, like `Epic Elevator Tunes!`
             - `albumArt` - takes a `URL` to an image file (Images that are square work best)
-            - `timeOffset` - Offsets display time (This is an advanced parameter, more info below)
-            - `duration` - Sets the display duration (This is an advanced parameter, more info below)
+                - If the `URL` is empty it will default to the disc art or the radio art if `isLive` is `true`
+            - `timeOffset` - offsets display time (This is an advanced parameter, more info below)
+            - `duration` - sets the display duration (This is an advanced parameter, more info below)
             - `isLive` - if set to `true` a red live bar will be shown instead of song progress
                 - This can be overridden by certain things, see advanced parameters below
         - Video
             - `videoName` - takes the name of your video, like `Big Buck Bunny`
+            - `videoSubs` - takes a `URL` to a subtitles file, supports `.srt`, `.ttml`, and `.dfxp`
+                - Subtitles loaded this way will show up as `English (US)` in the Roku settings regardless of language.
+                - Subtitles can also be embedded in the media source or stream
     - Enqueueing
         - `enqueue` - if set to `true` the request will be queued to play after the current item
             - You can only have **one item** queued. If you send this parameter while an item is in queue, it will be overridden
+        - `holdQueue` - if set to `true` along side enqueue being `true` it will wait before playing the queued media
+            - A skip action `a=s` request has to be sent to end the wait and play the media.
 
 - Advanced Parameters Info
     - Media Type: `m`
         - The Metadata type works only if Media Assistant is in the Audio UI.
         - This allows you to update the currently displayed metadata without stopping or restarting the current audio playback.
         - For example, if you are playing back an Internet Radio Stream and want to update the `songName` each time a new song starts without restarting/sending the audio stream.
-        - The following parameters cannot be sent with a metadata request `u`,`contentId`,`songFormat`,`videoFormat`,`videoName`,`enqueue`
+        - The `albumArt` parameter works differently with the Metadata type, it will not update the art if you send an empty `string`. If you would like the default art you must send `albumArt=default`
+        - The following parameters cannot be sent with a metadata request `u`,`contentId`,`songFormat`,`videoFormat`,`videoName`,`enqueue`, `holdQueue`
     - Audio: `timeOffset`
         - timeOffset takes an `int` as a `string` and allows you to push forward the displayed time by seconds
         - This does not affect actual playback, only what you see in the Audio UI
@@ -139,6 +150,7 @@ curl -d '' 'http://10.0.0.15:8060/input?u=https%3A%2F%2Farchive.org%2Fdownload%2
     - Audio: `isLive`
         - isLive will be set `true` automatically if the audio is detected to be a stream (This doesn't always work)
         - This will be disabled if the parameters `timeOffset` or `duration` are set
+        - If the current time overflows the duration by 2 seconds this will be enabled
 
 > [!WARNING]
 > All URLs and their URL Parameters must be encoded in order for the Post Request to succeed. Most Http Request libraries do this automatically, but some don't. For convience, the cURL examples above have already had the URLs encoded. [Learn More](https://www.w3schools.com/tags/ref_urlencode.ASP)

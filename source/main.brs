@@ -33,6 +33,7 @@ Function getDeepLinks(args) as Object
         deeplink = {
             u: checkURL(args)
             t: check("v", args.t)
+            a: check("", args.a)
             videoName: check(tr("Unknown Video"), args.videoName)
             albumName: check("", args.albumName)
             songName: check(tr("Unknown Song"), args.songName)
@@ -40,9 +41,11 @@ Function getDeepLinks(args) as Object
             albumArt: check("", args.albumArt)
             songFormat: check("", args.songFormat)
             videoFormat: check("", args.videoFormat)
+            videoSubs: check("", args.videoSubs)
             timeOffset: strToInt(args.timeOffset)
             duration: strToInt(args.duration)
             enqueue: strToBool(args.enqueue)
+            holdQueue: strToBool(args.holdQueue)
             isLive: strToBool(args.isLive)
         }
     end if

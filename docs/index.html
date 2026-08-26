@@ -42,17 +42,25 @@
                 <input type="text" name="id" id="id" placeholder="dev" value="782875" required />
             </div>
             <div>
-                <label for="u">**Media Url: </label>
+                <label for="u">**Media URL: </label>
                 <input class="clear" type="text" name="u" id="u" placeholder="https://video.mp4" />
             </div>
-            <div>
-                <label for="media-type">*Media Type:</label>
+            <div class="media">
+                <label for="media-type">***Media Type:</label>
 
-                <select name="t" id="media-type" required>
+                <select name="t" id="media-type">
                     <option value="">Please choose Media Type</option>
                     <option value="v">Video</option>
                     <option value="a">Audio</option>
                     <option value="m">Metadata (Audio Only)</option>
+                </select>
+            </div>
+            <div class="action">
+                <label for="action-type">Action Type:</label>
+
+                <select name="a" id="action-type">
+                    <option value="">Please choose an Action</option>
+                    <option value="s">Skip</option>
                 </select>
             </div>
             <div class="video" style="display: none;">
@@ -62,6 +70,10 @@
             <div class="video" style="display: none;">
                 <label for="videoFormat">Video Format: </label>
                 <input class="clear" type="text" name="videoFormat" id="video-format" placeholder="mp4, mkv, hls" />
+            </div>
+            <div class="video" style="display: none;">
+                <label for="videoSubs">Video Subtitles URL: </label>
+                <input class="clear" type="text" name="videoSubs" id="video-subs" placeholder="https://subs.srt" />
             </div>
             <div class="audio metadata" style="display: none;">
                 <label for="album-name">Album Name: </label>
@@ -76,7 +88,7 @@
                 <input class="clear" type="text" name="artistName" id="artist-name" placeholder="John Doe" />
             </div>
             <div class="audio metadata" style="display: none;">
-                <label for="album-art">Album Art Url: </label>
+                <label for="album-art">Album Art URL: </label>
                 <input class="clear" type="text" name="albumArt" id="album-art" placeholder="https://art.png" />
             </div>
             <div class="audio metadata" style="display: none;">
@@ -96,8 +108,12 @@
                     <label for="enqueue">Enqueue: </label>
                     <input class="clearBox" type="checkbox" name="enqueue" id="enqueue" style="margin-right: 2%;" />
                 </span>
+                <span class="audio video" style="display: none;">
+                    <label for="holdQueue">Hold Queue: </label>
+                    <input class="clearBox" type="checkbox" name="holdQueue" id="hold-queue" style="margin-right: 2%;" />
+                </span>
                 <span class="audio metadata" style="display: none;">
-                    <label for="isLive" style="margin-left: 2%;">Is Live: </label>
+                    <label for="isLive">Is Live: </label>
                     <input class="clearBox" type="checkbox" name="isLive" id="is-live" />
                 </span>
             </div><br>
@@ -105,8 +121,9 @@
                 <label for="launched">Channel Already Launched: </label>
                 <input type="checkbox" name="launched" id="launched" />
             </div><br>
-            <label style="font-size: small;" for="videoFormat">* Means parameter is required</label><br>
-            <label style="font-size: small;" for="videoFormat">** Required unless using Media Type: Metadata</label><br><br>
+            <label style="font-size: small;" for="videoFormat">*Means parameter is required</label><br>
+            <label style="font-size: small;" for="videoFormat">**URL can be empty if sending Metadata/Actions</label><br>
+            <label style="font-size: small;" for="videoFormat">***Required unless sending Actions</label><br><br>
             <div>
                 <button type="submit" value="Play My Media Roku!">Play on Media Assistant</button><br><br>
             </div>
