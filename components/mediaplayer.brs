@@ -410,15 +410,17 @@ function onKeyEvent(key as String, press as Boolean) as Boolean
             m.top.dialog = m.aboutDialog
         else
             if key = "back"
-                if (m.video.state = "playing")
+                if (m.video <> invalid and (m.video.state = "playing" or m.video.state = "buffering" or m.video.state = "paused"))
                     m.video.control = "stop"
-                    ' m.video.visible = false
-                End
+                    m.video.visible = false
+                    m.audioui.visible = false
+                    m.landingpage.visible = true
+                    m.top.setFocus(true)
                     return true
+					end if
                 end if
             end if
         endif
-    end if
 
     return false
 end function
