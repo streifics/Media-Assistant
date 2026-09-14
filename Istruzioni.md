@@ -2,7 +2,7 @@
 
 <img src="./docs/assets/logo_full.png" width="25%" border="2" align="right" />
 
-Istruzioni per la trasmissione dei video da telefono a Media Assistant (includendo il supporto ai video di YouTube).
+Istruzioni per la trasmissione dei video da smartphone a Media Assistant (includendo il supporto ai video di YouTube).
 
 
 > [!WARNING]
